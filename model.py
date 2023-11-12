@@ -5,9 +5,9 @@ class MyModel(nn.Module):
     def __init__(self):
         super().__init__()
         self.pad = nn.ConstantPad2d(1, 0.)
-        self.conv1 = nn.Conv2d(in_channels=1, out_channels=32, kernel_size=(3,3))
-        self.conv2 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=(3,3))
-        self.conv3 = nn.Conv2d(in_channels=64, out_channels=128, kernel_size=(3,3))
+        self.conv1 = nn.Conv2d(in_channels=1, out_channels=32, kernel_size=(3, 3))
+        self.conv2 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=(3, 3))
+        self.conv3 = nn.Conv2d(in_channels=64, out_channels=128, kernel_size=(3, 3))
         self.relu = nn.ReLU()
         self.maxpool = nn.MaxPool2d(kernel_size=(2, 2))
 
@@ -27,7 +27,6 @@ class MyModel(nn.Module):
         # batch size, number of channels, "height", "width"
         bsz, nch, height, width = x.shape
 
-        print(f"Output shape: {x.shape}")
         x = x.reshape(bsz, -1)
-        print(f"Output shape: {x.shape}")
+        # print(f"Output shape: {x.shape}")
         return self.mlp(x)

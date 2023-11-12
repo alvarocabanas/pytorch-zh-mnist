@@ -38,7 +38,7 @@ def train_single_epoch(
         loss = criterion(output, target)
         loss.backward()
         optimizer.step()
-        acc += accuracy(output, target)
+        acc += accuracy(target, output)
         train_loss.append(loss.item())
 
         if batch_idx % log_interval == 0:
@@ -65,7 +65,7 @@ def eval_single_epoch(
 
             output = model(data)
             test_loss.append(criterion(output, target).item())
-            acc += accuracy(output, target)
+            acc += accuracy(target, output)
 
         # Average accuracy across all correct predictions batches now
         test_acc = 100. * acc / len(test_loader.dataset)
@@ -122,9 +122,9 @@ def train_model(config):
 
 if __name__ == "__main__":
     config = {
-        "batch_size": 64,
+        "batch_size": 25,
         "epochs": 10,
-        "test_batch_size": 64,
+        "test_batch_size": 25,
         "learning_rate": 1e-3,
         "log_interval": 100,
     }
