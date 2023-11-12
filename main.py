@@ -142,3 +142,4 @@ if __name__ == "__main__":
     plt.ylabel('Test Accuracy [%]')
     plt.plot(train_accs, label='train')
     plt.plot(test_accs, label='test')
+    plt.show()
